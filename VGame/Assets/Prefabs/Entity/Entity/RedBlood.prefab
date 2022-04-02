@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3740667259548353755}
   - component: {fileID: 3233889420994797858}
   - component: {fileID: 1943234430155827314}
+  - component: {fileID: -4941375726386069787}
   m_Layer: 0
   m_Name: RedBlood
   m_TagString: Enemy
@@ -121,3 +122,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4941375726386069787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6679655023170560346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adf59fcec394094b9e4759719205cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

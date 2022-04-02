@@ -8,8 +8,10 @@ public class Enemy : MonoBehaviour
     // 꼭 들어가야하는거
     protected int hp;
     public int damage;
-    protected int score;
+    public int score;
     protected float speed;
+    // NPC에 필요한 것
+    public int pain;
     
     // 총알 발사 능력있는 친구들
     protected float fireRate = 0;
@@ -69,6 +71,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             GameManager.instance.AddScore(enemyInstance.score);
+            Debug.Log("Enemy OnTriggerEnter2D");
             Destroy(gameObject);
         }
         
@@ -84,5 +87,6 @@ public class Enemy : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        GameManager.instance.GetPain(enemyInstance.pain); // 적혈구 고통 게이지 구현
     }
 }

@@ -62,10 +62,13 @@ public class PlayerController : MonoBehaviour
             Enemy enemyInstance = other.gameObject.GetComponent<Enemy>(); // 부딪친 적 정보 가져오기
             if (GameManager.instance.isSheld == false) // 무적 상태가 아니라면
             {
+                Debug.Log("아야");
                 GameManager.instance.Damage(enemyInstance.damage / 2); // 데미지의 절반만 입음
+                GameManager.instance.GetPain(enemyInstance.pain); // npc(적혈구)만 입힘
             }
             if (other.gameObject.tag != "Covid") // 보스가 아니라면 파괴
             {
+                GameManager.instance.AddScore(enemyInstance.score); // 점수에 적의 점수를 더해줌
                 Destroy(other.gameObject);
             }
         }
