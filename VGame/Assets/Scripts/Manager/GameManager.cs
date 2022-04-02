@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
-    public IEnumerator SheldCoroutine()
+    public IEnumerator ShieldCoroutine()
     {
         isSheld = true;
         yield return new WaitForSeconds(3f);
@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        SceneManagement.sceneManager.NextScene("GameOver");
         // 랭킹 시스템 창으로 이동
     }
 }

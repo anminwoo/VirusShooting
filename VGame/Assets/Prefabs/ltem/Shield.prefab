@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7957823314741796544}
   - component: {fileID: 2107587777}
   m_Layer: 0
-  m_Name: Sheld
+  m_Name: Shield
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c80e902011364e4fa7b18a1dc71fb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Sheld
+  type: Shield

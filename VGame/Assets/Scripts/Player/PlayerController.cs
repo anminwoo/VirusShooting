@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         Shoot();
     }
 
-    void Shoot()
+    void Shoot() // 발사
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -59,12 +59,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Covid")
         {
-            Enemy enemyInstance = other.gameObject.GetComponent<Enemy>();
+            Enemy enemyInstance = other.gameObject.GetComponent<Enemy>(); // 부딪친 적 정보 가져오기
             if (GameManager.instance.isSheld == false) // 무적 상태가 아니라면
             {
-                GameManager.instance.Damage(enemyInstance.damage / 2);
+                GameManager.instance.Damage(enemyInstance.damage / 2); // 데미지의 절반만 입음
             }
-            if (other.gameObject.tag != "Covid")
+            if (other.gameObject.tag != "Covid") // 보스가 아니라면 파괴
             {
                 Destroy(other.gameObject);
             }
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             Bullet enemyBulletInstance = other.gameObject.GetComponent<Bullet>();
             if (GameManager.instance.isSheld == false) // 무적 상태가 아니라면
             {
-                GameManager.instance.Damage(enemyBulletInstance.damage);
+                GameManager.instance.Damage(enemyBulletInstance.damage); // 데미지 입음
             }
             Destroy(other.gameObject);
         }
@@ -93,18 +93,18 @@ public class PlayerController : MonoBehaviour
                     break;
                 case "PowerUp":
                     GameManager.instance.bulletLevel++;
-                    Debug.Log(GameManager.instance.bulletLevel); // 나중에 지워줘
+                    Debug.Log(GameManager.instance.bulletLevel); // 나중에 지워줘 (Debug.Log 지우기)
                     GameManager.instance.BulletLevel();
                     break;
                 case "ScoreUp":
                     GameManager.instance.AddScore(1000);
                     break;
-                case "Sheld":
+                case "Shield":
                     if (GameManager.instance.isSheld)
                     {
-                        StopCoroutine(GameManager.instance.SheldCoroutine());
+                        StopCoroutine(GameManager.instance.ShieldCoroutine());
                     }
-                    GameManager.instance.SheldCoroutine();
+                    GameManager.instance.ShieldCoroutine();
                     break;
                 case "Unknown":
 
