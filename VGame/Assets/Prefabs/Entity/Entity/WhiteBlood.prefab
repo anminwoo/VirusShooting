@@ -135,10 +135,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  item:
-  - {fileID: 5692555221080230056, guid: 49402c1c29db60a429f5ad0a9fbd92b1, type: 3}
-  - {fileID: 8610035082776785820, guid: 93660d37ae5c0864580e5a958a53d517, type: 3}
-  - {fileID: 583503745780543131, guid: 259b62eab40e32449af4e9a042bab0c9, type: 3}
-  - {fileID: 6913830358080481144, guid: 6b6a5a598176b7a419ef09b06e16c104, type: 3}
-  - {fileID: 5069344173892247262, guid: e0013f8509def9e44b559019cd9c0719, type: 3}
-  - {fileID: 5069344173892247262, guid: e0013f8509def9e44b559019cd9c0719, type: 3}
+  score: 0
+  pain: 0
+  items:
+  - {fileID: 1385258457, guid: 49402c1c29db60a429f5ad0a9fbd92b1, type: 3}
+  - {fileID: 599361010, guid: 93660d37ae5c0864580e5a958a53d517, type: 3}
+  - {fileID: 1343842811, guid: 259b62eab40e32449af4e9a042bab0c9, type: 3}
+  - {fileID: 1504911981, guid: 6b6a5a598176b7a419ef09b06e16c104, type: 3}
+  - {fileID: 2107587777, guid: e0013f8509def9e44b559019cd9c0719, type: 3}
+  - {fileID: 434419759, guid: e5bf727cb4fcc374ab362a27aadac32c, type: 3}

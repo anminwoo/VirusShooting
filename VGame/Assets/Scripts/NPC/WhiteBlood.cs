@@ -6,7 +6,7 @@ using Random = System.Random;
 
 public class WhiteBlood : Enemy
 {
-    public GameObject[] item;
+    public Item[] items;
     void Start()
     {
         hp = 1;
@@ -26,28 +26,32 @@ public class WhiteBlood : Enemy
         {
             int itemNumber = UnityEngine.Random.Range(0, 6);
             Debug.Log(itemNumber);
+            if (other.gameObject.tag == "PlayerBullet")
+            {
+                Destroy(other.gameObject); // 총알 파괴
+            }
             switch (itemNumber) // 아이템 랜덤 생성
             {
                 case 0:
-                    Instantiate(item[0], transform.position, transform.rotation);
+                    Instantiate(items[0], transform.position, transform.rotation);
                     break;
                 case 1:
-                    Instantiate(item[1], transform.position, transform.rotation);
+                    Instantiate(items[1], transform.position, transform.rotation);
                     break;
                 case 2:
-                    Instantiate(item[2], transform.position, transform.rotation);
+                    Instantiate(items[2], transform.position, transform.rotation);
                     break;
                 case 3:
-                    Instantiate(item[3], transform.position, transform.rotation);
+                    Instantiate(items[3], transform.position, transform.rotation);
                     break;
                 case 4:
-                    Instantiate(item[4], transform.position, transform.rotation);
+                    Instantiate(items[4], transform.position, transform.rotation);
                     break;
                 case 5:
-                    Instantiate(item[5], transform.position, transform.rotation);
+                    Instantiate(items[5], transform.position, transform.rotation);
                     break;
             }
-            Destroy(gameObject);
+            Destroy(gameObject); // 백혈구 파괴
         }
     }
 }

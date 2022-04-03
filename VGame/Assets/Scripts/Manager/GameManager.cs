@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class GameManager : MonoBehaviour
     public int hp;
     public int pain;
     public int score;
-    public int damage;
+    public int damage; // 입히는 데미지
+    public int increaseDamage; // 증가 데미지
     public int bulletLevel;
-    public bool isSheld;
+    public bool isShield;
+    public bool isUndamageCheat;
     
 
     public Text timeText;
@@ -24,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     public Slider hpSlider;
     public Slider painSlider;
+
+    public EnemySpawn enemySpawn;
+    public EnemySpawn[] enemySpawners;
 
     private void Awake()
     {
@@ -48,13 +54,15 @@ public class GameManager : MonoBehaviour
         score = 0;
         damage = 10;
         bulletLevel = 1;
-        isSheld = false;
+        isShield = false;
         hpSlider.value = hp;
         painSlider.value = pain;
         hpText.text = "체력: " + hp + "%";
         painText.text = "고통: " + pain + "%";
         scoreText.text = "Score: " + score;
         
+        // 치트
+        isUndamageCheat = false;
         // if()
         // 고통 값
 
@@ -63,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        CheatKey();
     }
 
     public void Heal(int healPoint)
@@ -141,18 +149,65 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ShieldCoroutine()
     {
-        isSheld = true;
-        yield return new WaitForSeconds(3f);
+        if (!isUndamageCheat)
+        {
+            isShield = true;
+            Debug.Log("ShieldCoroutine is Working" + Time.time);
+            yield return new WaitForSeconds(3f);
+            isShield = false;
+            Debug.Log("isShield == false"); // 지워라
+        }
     }
 
     public void BulletLevel()
     {
-        damage = damage * bulletLevel;
+        if (bulletLevel < 5)
+        {
+            bulletLevel++;
+        }
+        damage = bulletLevel * 10; // 증가 공격력 단위를 바꾸고 싶다면 따로 increaseDamage 변수를 만들어서 처리해줘
     }
 
     public void GameOver()
     {
         SceneManagement.sceneManager.NextScene("GameOver");
         // 랭킹 시스템 창으로 이동
+    }
+
+    public void CheatKey() // 치트키
+    {
+        if (Input.GetKeyDown(KeyCode.U)) // 회복 치트
+        {
+            Heal(10);
+        }
+        if (Input.GetKeyDown(KeyCode.I)) // 고통 감소 치트
+        {
+            ReducePain(10);
+        }
+        if (Input.GetKeyDown(KeyCode.O)) // 피해 치트
+        {
+            Damage(10);
+        }
+        if (Input.GetKeyDown(KeyCode.P)) // 고통 증가 치트
+        {
+            GetPain(10);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftBracket)) // 백혈구 소환 치트 enemies[4]
+        {
+            Instantiate(enemySpawn.enemies[4], enemySpawners[Random.Range(0, 4)].transform.position,
+                transform.rotation);
+            Debug.Log("백혈구");
+        }
+        if (Input.GetKeyDown(KeyCode.RightBracket)) // 적혈구 소환 치트 enemies[5]
+        {
+            Instantiate(enemySpawn.enemies[5], enemySpawners[Random.Range(0, 4)].transform.position,
+                transform.rotation);
+            Debug.Log("적혈구");
+        }
+
+        if (Input.GetKeyDown(KeyCode.J)) // 무적 치트
+        {
+            isUndamageCheat = !isUndamageCheat;
+        }
     }
 }

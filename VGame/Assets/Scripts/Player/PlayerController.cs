@@ -60,9 +60,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Covid")
         {
             Enemy enemyInstance = other.gameObject.GetComponent<Enemy>(); // 부딪친 적 정보 가져오기
-            if (GameManager.instance.isSheld == false) // 무적 상태가 아니라면
+            if (GameManager.instance.isShield == false && GameManager.instance.isUndamageCheat == false) // 무적 상태가 아니라면
             {
-                Debug.Log("아야");
+                Debug.Log("아야"); // 지워라
                 GameManager.instance.Damage(enemyInstance.damage / 2); // 데미지의 절반만 입음
                 GameManager.instance.GetPain(enemyInstance.pain); // npc(적혈구)만 입힘
             }
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.tag == "EnemyBullet")
         {
             Bullet enemyBulletInstance = other.gameObject.GetComponent<Bullet>();
-            if (GameManager.instance.isSheld == false) // 무적 상태가 아니라면
+            if (GameManager.instance.isShield == false && GameManager.instance.isUndamageCheat == false) // 무적 상태가 아니라면
             {
                 GameManager.instance.Damage(enemyBulletInstance.damage); // 데미지 입음
             }
@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
                     GameManager.instance.ReducePain(20);
                     break;
                 case "PowerUp":
-                    GameManager.instance.bulletLevel++;
                     Debug.Log(GameManager.instance.bulletLevel); // 나중에 지워줘 (Debug.Log 지우기)
                     GameManager.instance.BulletLevel();
                     break;
@@ -103,11 +102,12 @@ public class PlayerController : MonoBehaviour
                     GameManager.instance.AddScore(1000);
                     break;
                 case "Shield":
-                    if (GameManager.instance.isSheld)
+                    if (GameManager.instance.isShield)
                     {
+                        Debug.Log("Stopped ShieldCoroutine"); // 지워라
                         StopCoroutine(GameManager.instance.ShieldCoroutine());
                     }
-                    GameManager.instance.ShieldCoroutine();
+                    StartCoroutine(GameManager.instance.ShieldCoroutine());
                     break;
                 case "Unknown":
 

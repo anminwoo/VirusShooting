@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public int pain;
     
     // 총알 발사 능력있는 친구들
-    protected float fireRate = 0;
+    protected float fireRate;
     protected float nextFire; // 발사빈도
     
     private Rigidbody2D rigid;
@@ -87,6 +87,5 @@ public class Enemy : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        GameManager.instance.GetPain(enemyInstance.pain); // 적혈구 고통 게이지 구현
     }
 }

@@ -15,6 +15,7 @@ public class Covid : Enemy
         
         fireRate = 0;
         nextFire = 2f;
+        
     }
 
     void Update()
@@ -39,6 +40,7 @@ public class Covid : Enemy
 
     IEnumerator PatternCoroutine()
     {
+
         int selectShoot = Random.Range(1, 4);
         switch (selectShoot)
         {
@@ -52,7 +54,7 @@ public class Covid : Enemy
                 RoundShoot();
                 break;
         }
-
+        
         yield return new WaitForSeconds(3f);
     }
     
